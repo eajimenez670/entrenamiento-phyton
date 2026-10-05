@@ -15,12 +15,24 @@ from dataclasses import dataclass
 # 1. Comprensiones -----------------------------------------------------------
 def palabras_por_longitud(texto: str) -> dict[int, list[str]]:
     """Agrupa palabras únicas (minúsculas, sin puntuación) por longitud, ordenadas."""
-    raise NotImplementedError
+
+    # Se separa el texto original en palabras individuales,
+    # se limpia espacios en blanco y otros caracteres
+    valores_separados = texto.lower().split()
+    palabras = [palabra.strip(".,") for palabra in valores_separados]
+
+    # Se agrupa por longitud  y se ordenan
+    agrupadas = {
+        n: sorted({p for p in palabras if len(p) == n}) for n in sorted({len(p) for p in palabras})
+    }
+
+    return agrupadas
 
 
 # 2. Colecciones -------------------------------------------------------------
 def top_n(frecuencias: Iterable[str], n: int) -> list[tuple[str, int]]:
     """Los n elementos más frecuentes; empate → orden alfabético."""
+
     raise NotImplementedError
 
 
